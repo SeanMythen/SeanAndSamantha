@@ -1,0 +1,16 @@
+{
+  "name": "seanandsamantha.com",
+  "version": "1.0.0",
+  "description": "Sean and Samantha's Wedding Website",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lock": "npx staticrypt src/index.html -d dist/ -p Spring2026"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "staticrypt": "^3.5.4"
+  }
+}

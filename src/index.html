@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sean & Samantha</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        section {
+            display: none;
+            padding: 2rem;
+        }
+
+        section.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#rsvp">RSVP</a>
+    </nav>
+
+    <main>
+        <section id="home">✨ Welcome to our wedding site!</section>
+        <section id="about">💑 Our story began in...</section>
+        <section id="rsvp">📅 RSVP here and join us!</section>
+    </main>
+
+    <script>
+        const sections = document.querySelectorAll("main > section");
+
+        function showSection(id) {
+            sections.forEach(section => {
+                section.classList.toggle("active", section.id === id);
+            });
+            localStorage.setItem("currentSection", id); // Save to localStorage
+        }
+
+        function loadSectionFromHashOrStorage() {
+            const hash = location.hash.slice(1);
+            const saved = localStorage.getItem("currentSection");
+            const defaultSection = "home";
+
+            const target = hash || saved || defaultSection;
+            showSection(target);
+            if (!hash) location.hash = target;
+        }
+
+        window.addEventListener("hashchange", () => {
+            showSection(location.hash.slice(1));
+        });
+
+        window.addEventListener("DOMContentLoaded", loadSectionFromHashOrStorage);
+    </script>
+
+</body>
+
+</html>
